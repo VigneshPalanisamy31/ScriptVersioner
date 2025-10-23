@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStepModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StepModel>
+    <Id>1</Id>
+    <Name>Initialize Database</Name>
+    <Type>Setup</Type>
+    <PluginType>SQL</PluginType>
+    <Description>Main step to initialize DB</Description>
+    <ConfigurationDescription>Connection configs</ConfigurationDescription>
+    <IsASubStep>false</IsASubStep>
+    <CanHaveSubSteps>false</CanHaveSubSteps>
+    <Parameters>
+      <Parameter>
+        <Key>ConnectionString</Key>
+        <Value>Server=localhost;Database=TestDB;</Value>
+      </Parameter>
+    </Parameters>
+    <Conditions>
+      <Condition>
+        <Key>Environment</Key>
+        <Operator>equals</Operator>
+        <Value>Dev</Value>
+      </Condition>
+    </Conditions>
+    <Loops>
+      <Loop>
+        <Key>Retry</Key>
+        <Count>3</Count>
+      </Loop>
+    </Loops>
+    <SubSteps>
+      <StepModel>
+        <Id>1.1</Id>
+        <Name>Check DB Exists</Name>
+        <Type>Validation</Type>
+        <PluginType>If</PluginType>
+        <Description>If database exists</Description>
+        <ConfigurationDescription>Validation for DB existence</ConfigurationDescription>
+        <IsASubStep>true</IsASubStep>
+        <CanHaveSubSteps>false</CanHaveSubSteps>
+        <Parameters />
+        <Conditions />
+        <Loops />
+        <SubSteps />
+      </StepModel>
+    </SubSteps>
+  </StepModel>
+  <StepModel>
+    <Id>2</Id>
+    <Name>Import Data</Name>
+    <Type>DataLoad</Type>
+    <PluginType>File</PluginType>
+    <IsASubStep>false</IsASubStep>
+    <CanHaveSubSteps>false</CanHaveSubSteps>
+    <Parameters>
+      <Parameter>
+        <Key>SourceFile</Key>
+        <Value>input.csv</Value>
+      </Parameter>
+    </Parameters>
+    <Conditions />
+    <Loops />
+    <SubSteps>
+      <StepModel>
+        <Id>2.1</Id>
+        <Name>Validate CSV</Name>
+        <Type>Validation</Type>
+        <PluginType>Check</PluginType>
+        <Description>Ensure file format is valid</Description>
+        <ConfigurationDescription>Basic schema validation</ConfigurationDescription>
+        <IsASubStep>true</IsASubStep>
+        <CanHaveSubSteps>true</CanHaveSubSteps>
+        <Parameters />
+        <Conditions />
+        <Loops />
+        <SubSteps>
+          <StepModel>
+            <Id>2.1.1</Id>
+            <Name>Check Headers</Name>
+            <Type>Validation</Type>
+            <PluginType>Check</PluginType>
+            <Description>Validate column headers</Description>
+            <ConfigurationDescription>Check required columns</ConfigurationDescription>
+            <IsASubStep>true</IsASubStep>
+            <CanHaveSubSteps>false</CanHaveSubSteps>
+            <Parameters />
+            <Conditions />
+            <Loops />
+            <SubSteps />
+          </StepModel>
+        </SubSteps>
+      </StepModel>
+    </SubSteps>
+  </StepModel>
+  <StepModel>
+    <Id>3</Id>
+    <Name>testing</Name>
+    <Type>Custom</Type>
+    <PluginType>user</PluginType>
+    <IsASubStep>false</IsASubStep>
+    <CanHaveSubSteps>false</CanHaveSubSteps>
+    <Parameters />
+    <Conditions />
+    <Loops />
+    <SubSteps />
+  </StepModel>
+<stepmodel>
+<id>2026</id>
+</stepmodel>
+<id>2027</id>
+<id>2028</id>
+<id>2029</id>
+<id>2030</id>
+<id>2040</id>
+<id>2050</id>
+<200000000000000000000000000000>
+<101010>
+<202020>
+<303030>
+### Sample created at 19:45
+</ArrayOfStepModel>
